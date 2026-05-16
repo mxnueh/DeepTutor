@@ -80,6 +80,8 @@ const SECONDARY_NAV: NavEntry[] = [
 ];
 const DEFAULT_SESSION_VIEWPORT_CLASS_NAME = "max-h-[112px]";
 const GITHUB_REPO_URL = "https://github.com/HKUDS/DeepTutor";
+const BRAND_NAME = "EducaT TutorRD";
+const BRAND_LOGO_SRC = "/educat-tutorrd-logo-v3.svg";
 
 interface SidebarShellProps {
   sessions?: SessionSummary[];
@@ -123,25 +125,26 @@ export function SidebarShell({
   /* ---- Collapsed state ---- */
   if (collapsed) {
     return (
-      <aside className="group/sb relative flex h-screen w-[60px] shrink-0 flex-col items-center bg-[var(--secondary)] py-3 transition-all duration-200">
+      <aside className="group/sb relative flex h-screen w-[64px] shrink-0 flex-col items-center border-r border-[var(--border)]/55 bg-[var(--secondary)]/95 py-3 backdrop-blur-sm transition-all duration-200">
         {/* Header: logo + collapse toggle (toggle replaces logo on hover) */}
         <div className="relative mb-2 flex h-9 w-9 items-center justify-center">
           <Link
             href="/"
-            aria-label="DeepTutor"
+            aria-label={BRAND_NAME}
             className="flex items-center justify-center transition-opacity duration-150 group-hover/sb:opacity-0"
           >
             <Image
-              src="/logo-ver2.png"
-              alt="DeepTutor"
-              width={22}
-              height={22}
-              className="h-[22px] w-[22px] rounded-md"
+              src={BRAND_LOGO_SRC}
+              alt={BRAND_NAME}
+              width={26}
+              height={26}
+              unoptimized
+              className="h-[26px] w-auto"
             />
           </Link>
           <button
             onClick={() => setCollapsed(false)}
-            className="absolute inset-0 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] opacity-0 transition-all duration-150 hover:bg-[var(--background)]/60 hover:text-[var(--foreground)] group-hover/sb:opacity-100"
+            className="absolute inset-0 flex items-center justify-center rounded-lg text-[var(--muted-foreground)] opacity-0 transition-all duration-150 hover:bg-[var(--primary)]/14 hover:text-[var(--foreground)] group-hover/sb:opacity-100"
             aria-label={t("Expand sidebar")}
           >
             <PanelLeftOpen size={16} />
@@ -152,7 +155,7 @@ export function SidebarShell({
         <button
           onClick={handleNewChat}
           title={t("New Chat") as string}
-          className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--border)]/50 bg-[var(--background)]/40 text-[var(--foreground)] shadow-sm transition-all duration-150 hover:border-[var(--border)] hover:bg-[var(--background)]/80"
+          className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--primary)]/45 bg-[var(--primary)] text-[var(--primary-foreground)] shadow-[0_10px_28px_rgba(201,162,39,0.2)] transition-all duration-150 hover:brightness-105"
           aria-label={t("New Chat")}
         >
           <Plus size={16} strokeWidth={2.2} />
@@ -180,12 +183,12 @@ export function SidebarShell({
                   aria-label={t(item.label)}
                   className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-150 ${
                     active
-                      ? "bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm"
-                      : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
+                      ? "bg-[var(--primary)]/16 text-[var(--foreground)] shadow-sm ring-1 ring-[var(--primary)]/18"
+                      : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/45 hover:text-[var(--foreground)]"
                   }`}
                 >
                   {active && (
-                    <span className="absolute -left-1.5 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-[var(--foreground)]/80" />
+                    <span className="absolute -left-1.5 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-[var(--primary)]" />
                   )}
                   <item.icon size={18} strokeWidth={active ? 2 : 1.6} />
                 </Link>
@@ -208,12 +211,12 @@ export function SidebarShell({
                 title={t(item.label) as string}
                 className={`relative flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-150 ${
                   active
-                    ? "bg-[var(--background)]/80 text-[var(--foreground)] shadow-sm"
-                    : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
+                    ? "bg-[var(--primary)]/16 text-[var(--foreground)] shadow-sm ring-1 ring-[var(--primary)]/18"
+                    : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/45 hover:text-[var(--foreground)]"
                 }`}
               >
                 {active && (
-                  <span className="absolute -left-1.5 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-[var(--foreground)]/80" />
+                  <span className="absolute -left-1.5 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-full bg-[var(--primary)]" />
                 )}
                 <item.icon size={18} strokeWidth={active ? 2 : 1.6} />
               </Link>
@@ -226,7 +229,7 @@ export function SidebarShell({
             rel="noreferrer noopener"
             title="GitHub"
             aria-label="GitHub"
-            className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl text-[var(--muted-foreground)]/70 transition-colors hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
+            className="mt-1 flex h-9 w-9 items-center justify-center rounded-xl text-[var(--muted-foreground)]/70 transition-colors hover:bg-[var(--primary)]/14 hover:text-[var(--foreground)]"
           >
             <Github size={15} strokeWidth={1.6} />
           </a>
@@ -238,24 +241,25 @@ export function SidebarShell({
 
   /* ---- Expanded state ---- */
   return (
-    <aside className="flex w-[220px] h-screen shrink-0 flex-col bg-[var(--secondary)] transition-all duration-200">
+    <aside className="flex h-screen w-[220px] shrink-0 flex-col border-r border-[var(--border)]/55 bg-[var(--secondary)]/95 backdrop-blur-sm transition-all duration-200">
       {/* Header: logo + collapse toggle */}
       <div className="flex h-14 items-center justify-between px-4">
         <Link href="/" className="group flex items-center gap-2">
           <Image
-            src="/logo-ver2.png"
-            alt="DeepTutor"
-            width={22}
-            height={22}
-            className="h-[22px] w-[22px] transition-transform duration-200 group-hover:scale-105"
+            src={BRAND_LOGO_SRC}
+            alt={BRAND_NAME}
+            width={28}
+            height={28}
+            unoptimized
+            className="h-7 w-auto transition-transform duration-200 group-hover:scale-105"
           />
           <span className="text-[16px] font-semibold leading-none tracking-[-0.02em] text-[var(--foreground)]">
-            DeepTutor
+            {BRAND_NAME}
           </span>
         </Link>
         <button
           onClick={() => setCollapsed(true)}
-          className="rounded-md p-1 text-[var(--muted-foreground)] transition-colors hover:text-[var(--foreground)]"
+          className="rounded-md p-1 text-[var(--muted-foreground)] transition-colors hover:bg-[var(--primary)]/12 hover:text-[var(--foreground)]"
           aria-label={t("Collapse sidebar")}
         >
           <PanelLeftClose size={15} />
@@ -268,7 +272,7 @@ export function SidebarShell({
           {/* New chat */}
           <button
             onClick={handleNewChat}
-            className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-[13.5px] text-[var(--muted-foreground)] transition-colors hover:bg-[var(--background)]/60 hover:text-[var(--foreground)]"
+            className="flex w-full items-center gap-2.5 rounded-lg border border-[var(--primary)]/32 bg-[var(--primary)] px-3 py-2 text-[13.5px] font-medium text-[var(--primary-foreground)] shadow-[0_12px_30px_rgba(201,162,39,0.16)] transition-all hover:brightness-105"
           >
             <Plus size={16} strokeWidth={2} />
             <span>{t("New Chat")}</span>
@@ -292,8 +296,8 @@ export function SidebarShell({
                   href={item.href}
                   className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13.5px] transition-colors ${
                     active
-                      ? "bg-[var(--background)]/70 font-medium text-[var(--foreground)]"
-                      : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
+                      ? "bg-[var(--primary)]/14 font-medium text-[var(--foreground)] ring-1 ring-[var(--primary)]/15"
+                      : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/45 hover:text-[var(--foreground)]"
                   }`}
                 >
                   <item.icon size={16} strokeWidth={active ? 1.9 : 1.5} />
@@ -334,8 +338,8 @@ export function SidebarShell({
               href={item.href}
               className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13.5px] transition-colors ${
                 active
-                  ? "bg-[var(--background)]/70 font-medium text-[var(--foreground)]"
-                  : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
+                  ? "bg-[var(--primary)]/14 font-medium text-[var(--foreground)] ring-1 ring-[var(--primary)]/15"
+                  : "text-[var(--muted-foreground)] hover:bg-[var(--background)]/45 hover:text-[var(--foreground)]"
               }`}
             >
               <item.icon size={16} strokeWidth={active ? 1.9 : 1.5} />
@@ -352,7 +356,7 @@ export function SidebarShell({
             rel="noreferrer noopener"
             title="GitHub"
             aria-label="GitHub"
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[var(--muted-foreground)]/55 transition-colors hover:bg-[var(--background)]/50 hover:text-[var(--muted-foreground)]"
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-[var(--muted-foreground)]/55 transition-colors hover:bg-[var(--primary)]/12 hover:text-[var(--foreground)]"
           >
             <Github size={13} strokeWidth={1.7} />
           </a>
